@@ -80,8 +80,8 @@ Here's a brief overview of the folder structure:
   - **`/styles`**: Tailwind CSS and custom styles.
   - **`/context`**: React context for state management.
   - **`/store`**: Redux store and slices.
-- **`/scripts`**: Custom scripts (if any).
-- **`/tests`**: Unit and integration tests.
+
+
 
 ## Contributing
 
