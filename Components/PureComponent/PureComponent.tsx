@@ -7,7 +7,7 @@ const data = [
     { name: 'March', value: 25000, amount: 129000 },
     { name: 'April', value: 3300, amount: 20000 },
     { name: 'May', value: 3189, amount: 20181 },
-    { name: 'June', value: 2239, amount: 250000},
+    { name: 'June', value: 2239, amount: 250000 },
     { name: 'July', value: 2149, amount: 2700 },
     { name: 'August', value: 1360, amount: 3170 },
     { name: 'September', value: 40, amount: 5600 },
