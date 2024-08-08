@@ -1,7 +1,3 @@
-Here's a sample README file for your React project. This README is structured to provide an overview, setup instructions, usage guidelines, and other relevant information for a React project.
-
----
-
 # Construction Management Dashboard
 
 This is a React-based web application designed to provide a comprehensive dashboard for managing construction projects. It includes features for tracking project progress, managing resources, and monitoring budgets. The dashboard is built using React, Tailwind CSS, and TypeScript, and is integrated with Redux for state management.
@@ -37,29 +33,29 @@ To get started with the project, follow these steps:
 
 1. **Clone the repository**:
 
-    ```bash
-    git clone https://github.com/victot0121/construction-dashboard.git
-    ```
+   ```bash
+   git clone https://github.com/victot0121/construction-dashboard.git
+   ```
 
 2. **Navigate to the project directory**:
 
-    ```bash
-    cd construction-management-dashboard
-    ```
+   ```bash
+   cd construction-management-dashboard
+   ```
 
 3. **Install the dependencies**:
 
-    ```bash
-    npm install
-    ```
+   ```bash
+   npm install
+   ```
 
 4. **Run the development server**:
 
-    ```bash
-    npm run dev
-    ```
+   ```bash
+   npm run dev
+   ```
 
-    The application will be available at `http://localhost:3000`.
+   The application will be available at `http://localhost:3000`.
 
 ## Usage
 
@@ -80,8 +76,6 @@ Here's a brief overview of the folder structure:
   - **`/styles`**: Tailwind CSS and custom styles.
   - **`/context`**: React context for state management.
   - **`/store`**: Redux store and slices.
-
-
 
 ## Contributing
 
