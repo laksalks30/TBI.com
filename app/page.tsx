@@ -1,7 +1,7 @@
-import Navbar from '@/components/Navbar/Navbar';
-import ProjectOverview from '@/components/ProjectOverview/ProjectOverview';
-import ResourceManagement from '@/components/ResourceManagement/ResourceManagement';
-import BudgetTracking from '@/components/BudgetTracking/BudgetTracking';
+import Navbar from '@/Components/Navbar/Navbar';
+import ProjectOverview from '@/Components/ProjectOverview/ProjectOverview';
+import ResourceManagement from '@/Components/ResourceManagement/ResourceManagement';
+import BudgetTracking from '@/Components/BudgetTracking/BudgetTracking';
 
 
 

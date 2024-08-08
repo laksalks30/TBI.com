@@ -5,11 +5,6 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import PureComponent from "@/Components/PureComponent/PureComponent"
 import { useResource } from "@/context/ResourceContext";
 
-// const data = [
-//     { name: 'Labor', value: 400 },
-//     { name: 'Materials', value: 300 },
-//     { name: 'Equipment', value: 300 },
-// ];
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
 
