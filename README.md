@@ -94,6 +94,3 @@ Please ensure that your code adheres to the existing style and includes appropri
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
----
-
-Feel free to customize this README to better fit your project's specific requirements and details.
