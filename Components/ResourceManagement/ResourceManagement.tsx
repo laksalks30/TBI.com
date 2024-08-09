@@ -15,7 +15,7 @@ const ResourceManagement: React.FC = () => {
     return (
         <div className="resource-management">
             <div className="resource-chart">
-                <h2 className="resource-heading">Resource Management</h2>
+                <h2 className="resource-heading">Resource Managements</h2>
                 <PieChart width={400} height={400}>
                     <Pie
                         data={data}
