@@ -1,0 +1,57 @@
+.budget-tracking-container {
+    padding: 1rem;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+  }
+  
+  .budget-tracking-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .budget-tracking-content {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .budget-tracking-section {
+    width: 33.333%;
+  }
+  
+  .budget-tracking-section h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+  
+  .animate-slideInLeft {
+    animation: slideInLeft 0.5s ease-in-out;
+  }
+  
+  .animate-slideInRight {
+    animation: slideInRight 0.5s ease-in-out;
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  

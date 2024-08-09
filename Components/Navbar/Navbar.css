@@ -1,0 +1,32 @@
+.navbar {
+    background-color: #4b5563; 
+    padding: 1rem; 
+  }
+  
+  .container {
+    max-width: 100%; 
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .navbar-title {
+    color: #ffffff; 
+    font-size: 1.5rem;
+  }
+  
+  
+  @keyframes slideInLeft {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .animate-slideInLeft {
+    animation: slideInLeft 0.5s ease-in-out;
+  }
+  
