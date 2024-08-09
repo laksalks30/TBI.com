@@ -14,7 +14,7 @@ const ResourceManagement: React.FC = () => {
 
     return (
         <div className="p-4 bg-white shadow rounded-lg flex flex-col md:flex-row gap-8">
-            <div className="flex-1">
+            <div className="flex-1 animate-slideInUp">
                 <h2 className="text-2xl font-bold mb-4">Resource Management</h2>
                 <PieChart width={400} height={400}>
                     <Pie
