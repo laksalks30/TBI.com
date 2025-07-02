@@ -1,69 +1,72 @@
 import { PrismaClient } from '@prisma/client';
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
 async function main() {
-  // 1. Tambah Category
-  const categories = await prisma.category.createMany({
-    data: [
-      { name: 'Material Bangunan' },
-      { name: 'Alat Berat' },
-      { name: 'Peralatan Tangan' },
-      { name: 'Perlengkapan Safety' },
-      { name: 'Peralatan Elektrik' },
-    ],
+  console.log('Start seeding...');
+
+  // Seed Categories
+  const category1 = await prisma.category.create({
+    data: { name: 'Bahan Bangunan' },
   });
 
-  // 2. Tambah Product
-  const products = await prisma.product.createMany({
-    data: [
-      { name: 'Semen', categoryId: 1 },
-      { name: 'Pasir', categoryId: 1 },
-      { name: 'Excavator', categoryId: 2 },
-      { name: 'Helm Safety', categoryId: 4 },
-      { name: 'Bor Listrik', categoryId: 5 },
-    ],
+  const category2 = await prisma.category.create({
+    data: { name: 'Peralatan' },
   });
 
-  // 3. Tambah Stock In
+  // Seed Products
+  const product1 = await prisma.product.create({
+    data: {
+      name: 'Semen Holcim 50kg',
+      categoryId: category1.id,
+    },
+  });
+
+  const product2 = await prisma.product.create({
+    data: {
+      name: 'Paku 5cm',
+      categoryId: category2.id,
+    },
+  });
+
+  // Seed StockIn
   await prisma.stockIn.createMany({
     data: [
-      { productId: 1, quantity: 100 },
-      { productId: 2, quantity: 200 },
-      { productId: 3, quantity: 3 },
-      { productId: 4, quantity: 50 },
-      { productId: 5, quantity: 10 },
+      { productId: product1.id, quantity: 100 },
+      { productId: product2.id, quantity: 500 },
     ],
   });
 
-  // 4. Tambah Stock Out
+  // Seed StockOut
   await prisma.stockOut.createMany({
     data: [
-      { productId: 1, quantity: 20 },
-      { productId: 2, quantity: 50 },
-      { productId: 3, quantity: 1 },
-      { productId: 4, quantity: 10 },
-      { productId: 5, quantity: 2 },
+      { productId: product1.id, quantity: 20 },
+      { productId: product2.id, quantity: 50 },
     ],
   });
 
-  // 5. Tambah User (password di-hash pakai bcrypt)
-  const hashedPassword = await bcrypt.hash('password123', 10);
+  // Seed Users with Bcrypt Password
+  const saltRounds = 10;
+
+  const passwordAdmin = await bcrypt.hash('admin123', saltRounds);
+  const passwordStaff = await bcrypt.hash('staff123', saltRounds);
 
   await prisma.user.createMany({
     data: [
-      { name: 'Admin One', email: 'admin1@mail.com', role: 'admin', password: hashedPassword },
-      { name: 'Admin Two', email: 'admin2@mail.com', role: 'admin', password: hashedPassword },
-      { name: 'Staff One', email: 'staff1@mail.com', role: 'staff', password: hashedPassword },
-      { name: 'Staff Two', email: 'staff2@mail.com', role: 'staff', password: hashedPassword },
-      { name: 'Staff Three', email: 'staff3@mail.com', role: 'staff', password: hashedPassword },
+      { name: 'Admin', email: 'admin@example.com', password: passwordAdmin, role: 'ADMIN' },
+      { name: 'Staff', email: 'staff@example.com', password: passwordStaff, role: 'STAFF' },
     ],
   });
 
-  console.log('✅ Dummy data berhasil di-seed.');
+  console.log('Seeding finished.');
 }
 
 main()
-  .catch((e) => console.error(e))
-  .finally(() => prisma.$disconnect());
+  .catch((e) => {
+    console.error('Seeding error:', e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
