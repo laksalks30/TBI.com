@@ -8,17 +8,24 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const page = parseInt(searchParams.get('page') || '1');
   const limit = parseInt(searchParams.get('limit') || '5');
+  const search = searchParams.get('search') || '';
   const skip = (page - 1) * limit;
 
+  const whereClause = search
+    ? { name: { contains: search, mode: 'insensitive' } }
+    : {};
+
   const users = await prisma.user.findMany({
+    where: whereClause,
     skip,
     take: limit,
   });
 
-  const total = await prisma.user.count();
+  const total = await prisma.user.count({ where: whereClause });
 
   return NextResponse.json({ data: users, total });
 }
+
 
 
 // POST: Tambah user baru

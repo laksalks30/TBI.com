@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Input } from '@/components/ui/input';
 
 interface Product {
   id: number;
@@ -25,10 +26,12 @@ export default function StockOutPage() {
   const [stockOuts, setStockOuts] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
+  const [search, setSearch] = useState('');
+  const [searchInput, setSearchInput] = useState('');
   const limit = 5;
 
   const fetchStockOuts = async () => {
-    const res = await fetch(`/api/stockout?page=${page}&limit=${limit}`);
+    const res = await fetch(`/api/stockout?page=${page}&limit=${limit}&search=${search}`);
     const json = await res.json();
     setStockOuts(json.data);
     setTotal(json.total);
@@ -36,9 +39,14 @@ export default function StockOutPage() {
 
   useEffect(() => {
     fetchStockOuts();
-  }, [page]);
+  }, [page, search]);
 
   const totalPages = Math.ceil(total / limit);
+
+  const handleSearch = () => {
+    setPage(1);
+    setSearch(searchInput);
+  };
 
   return (
     <div>
@@ -47,6 +55,14 @@ export default function StockOutPage() {
           <CardTitle>Stock Out (Page {page} of {totalPages})</CardTitle>
         </CardHeader>
         <CardContent>
+          <div className="flex gap-2 mb-4">
+            <Input
+              placeholder="Cari nama produk..."
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+            />
+            <Button onClick={handleSearch}>Search</Button>
+          </div>
           <Table>
             <TableHeader>
               <TableRow>

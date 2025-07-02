@@ -1,18 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Input } from '@/components/ui/input';
 
 
 interface Product {
@@ -34,20 +26,27 @@ export default function ProductPage() {
   const [products, setProducts] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
+  const [search, setSearch] = useState('');
+  const [searchInput, setSearchInput] = useState('');
   const limit = 5;
 
-  const fetchData = async () => {
-    const res = await fetch(`/api/product?page=${page}&limit=${limit}`);
+  const fetchProducts = async () => {
+    const res = await fetch(`/api/product?page=${page}&limit=${limit}&search=${search}`);
     const json = await res.json();
     setProducts(json.data);
     setTotal(json.total);
   };
 
   useEffect(() => {
-    fetchData();
-  }, [page]);
+    fetchProducts();
+  }, [page, search]);
 
   const totalPages = Math.ceil(total / limit);
+
+  const handleSearch = () => {
+    setPage(1);
+    setSearch(searchInput);
+  };
 
   return (
     <div>
@@ -56,6 +55,16 @@ export default function ProductPage() {
           <CardTitle>Product List (Page {page} of {totalPages})</CardTitle>
         </CardHeader>
         <CardContent>
+          {/* Search Bar */}
+          <div className="flex gap-2 mb-4">
+            <Input
+              placeholder="Cari nama produk..."
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+            />
+            <Button onClick={handleSearch}>Search</Button>
+          </div>
+
           <Table>
             <TableHeader>
               <TableRow>
@@ -73,7 +82,7 @@ export default function ProductPage() {
             </TableBody>
           </Table>
 
-          {/* Pagination Button */}
+          {/* Pagination */}
           <div className="flex justify-between mt-4">
             <Button
               onClick={() => setPage((prev) => Math.max(prev - 1, 1))}

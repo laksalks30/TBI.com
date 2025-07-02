@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Input } from '@/components/ui/input';
 
 interface User {
   id: number;
@@ -16,10 +17,12 @@ export default function UserPage() {
   const [users, setUsers] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
+  const [search, setSearch] = useState('');
+  const [searchInput, setSearchInput] = useState('');
   const limit = 5;
 
   const fetchUsers = async () => {
-    const res = await fetch(`/api/user?page=${page}&limit=${limit}`);
+    const res = await fetch(`/api/user?page=${page}&limit=${limit}&search=${search}`);
     const json = await res.json();
     setUsers(json.data);
     setTotal(json.total);
@@ -27,9 +30,14 @@ export default function UserPage() {
 
   useEffect(() => {
     fetchUsers();
-  }, [page]);
+  }, [page, search]);
 
   const totalPages = Math.ceil(total / limit);
+
+  const handleSearch = () => {
+    setPage(1);
+    setSearch(searchInput);
+  };
 
   return (
     <div>
@@ -38,6 +46,15 @@ export default function UserPage() {
           <CardTitle>User List (Page {page} of {totalPages})</CardTitle>
         </CardHeader>
         <CardContent>
+          {/* Search Bar */}
+          <div className="flex gap-2 mb-4">
+            <Input
+              placeholder="Cari nama user..."
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+            />
+            <Button onClick={handleSearch}>Search</Button>
+          </div>
           <Table>
             <TableHeader>
               <TableRow>

@@ -8,17 +8,21 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const page = parseInt(searchParams.get('page') || '1');
   const limit = parseInt(searchParams.get('limit') || '5');
+  const search = searchParams.get('search') || '';
   const skip = (page - 1) * limit;
 
+  const whereClause = search
+    ? { name: { contains: search, mode: 'insensitive' } }
+    : {};
+
   const products = await prisma.product.findMany({
+    where: whereClause,
     skip,
     take: limit,
-    include: {
-      category: true,
-    },
+    include: { category: true },
   });
 
-  const total = await prisma.product.count();
+  const total = await prisma.product.count({ where: whereClause });
 
   return NextResponse.json({ data: products, total });
 }
