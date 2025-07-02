@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import LineChart from '@/Components/LineChart/LineChart';
+import LineChart from '@/components/LineChart/LineChart';
 
 interface chartDataProps {
   name: string;

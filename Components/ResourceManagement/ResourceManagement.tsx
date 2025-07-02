@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
-import PureComponent from "@/Components/PureComponent/PureComponent";
+import PureComponent from "@/components/PureComponent/PureComponent";
 import { useResource } from "@/context/ResourceContext";
 import './ResourceManagement.css'
 

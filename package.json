@@ -8,22 +8,47 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "dependencies": {
+    "@prisma/client": "^6.11.0",
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-navigation-menu": "^1.2.13",
+    "@radix-ui/react-scroll-area": "^1.2.9",
+    "@radix-ui/react-select": "^2.2.5",
+    "@radix-ui/react-separator": "^1.1.7",
+    "@radix-ui/react-slot": "^1.2.3",
     "@reduxjs/toolkit": "^2.2.7",
+    "bcryptjs": "^3.0.2",
     "chart.js": "^4.4.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.525.0",
     "next": "14.2.5",
+    "next-server-session": "^1.2.5",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
     "react-redux": "^9.1.2",
-    "recharts": "^2.12.7"
+    "recharts": "^2.15.4",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^20.19.4",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "postcss": "^8",
+    "prisma": "^6.11.0",
     "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.20.3",
     "typescript": "^5"
-  }
+  },
+  "description": "This is a React-based web application designed to provide a comprehensive dashboard for managing construction projects. It includes features for tracking project progress, managing resources, and monitoring budgets. The dashboard is built using React, Tailwind CSS, and TypeScript, and is integrated with Redux for state management.",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
