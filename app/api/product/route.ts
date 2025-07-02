@@ -15,7 +15,7 @@ export async function GET(req: Request) {
     ? {
         name: {
           contains: search,
-          mode: Prisma.QueryMode.insensitive,   // ✅ Fix disini
+          mode: Prisma.QueryMode.insensitive,
         },
       }
     : {};
