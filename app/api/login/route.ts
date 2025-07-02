@@ -1,4 +1,4 @@
-import { PrismaClient } from '../../../node_modules/@prisma/client'; // Adjust the import path based on your project structure
+import { PrismaClient } from '@prisma/client'; // Adjust the import path based on your project structure
 import bcrypt from 'bcryptjs';
 import { NextResponse } from 'next/server';
 

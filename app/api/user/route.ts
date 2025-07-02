@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@/generated/prisma';  // Ganti path sesuai Prisma kamu
+import { PrismaClient } from '@prisma/client';  // Ganti path sesuai Prisma kamu
 
 const prisma = new PrismaClient();
 
@@ -32,12 +32,13 @@ export async function GET(req: Request) {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, password } = body;
+    const { name, email, role, password } = body;
 
     const newUser = await prisma.user.create({
       data: {
         name,
         email,
+        role,
         password,
       },
     });

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@/generated/prisma';  // Sesuaikan path Prisma Anda
+import { PrismaClient } from '@prisma/client';  // Sesuaikan path Prisma Anda
 
 const prisma = new PrismaClient();
 
