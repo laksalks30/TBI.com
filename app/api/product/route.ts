@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';  // Ganti sesuai path Prisma kamu
+import { Prisma, PrismaClient } from '@prisma/client';  // Ganti sesuai path Prisma kamu
 
 const prisma = new PrismaClient();
 
@@ -12,7 +12,12 @@ export async function GET(req: Request) {
   const skip = (page - 1) * limit;
 
   const whereClause = search
-    ? { name: { contains: search, mode: 'insensitive' } }
+    ? {
+        name: {
+          contains: search,
+          mode: Prisma.QueryMode.insensitive,   // ✅ Fix disini
+        },
+      }
     : {};
 
   const products = await prisma.product.findMany({
