@@ -60,13 +60,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <Link href="/user" legacyBehavior passHref>
-                    <NavigationMenuLink className="px-4 py-2 hover:bg-gray-100 rounded-md">
-                      User
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
                 {userRole === 'admin' && (
                   <NavigationMenuItem>
                     <Link href="/user" legacyBehavior passHref>
